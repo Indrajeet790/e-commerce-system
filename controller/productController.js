@@ -1,5 +1,7 @@
 const Product=require("../models/product")
 
+
+// create a new product
 module.exports.createProduct=async(req,res)=>{
 try{
     const{name,desc,price,variants}=req.body;
@@ -17,6 +19,7 @@ res.status(500).json({err:"Internal Server error"})
 }
 
 }
+// update a product
 module.exports.updateProduct=async(req,res)=>{
 try{
     const{name,desc,price,variants}=req.body;
@@ -28,6 +31,18 @@ try{
         {new:true}
         );
         res.status(200).json(updatedProduct);
+}catch(err){
+res.status(500).json({err:"server error"})
+}
+}
+
+// delete a product code
+module.exports.deleteProduct=async(req,res)=>{
+try{
+    const deletedProduct=await Product.findByIdAndDelete(
+        req.params.productId,
+        );
+        res.status(200).json(deletedProduct);
 }catch(err){
 res.status(500).json({err:"server error"})
 }
