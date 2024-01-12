@@ -36,6 +36,17 @@ res.status(500).json({err:"server error"})
 }
 }
 
+// view all product
+
+module.exports.findAllProduct=async(req,res)=>{
+    try{
+        const products=await Product.find().populate("variants");
+        res.status(200).json(products)
+    }catch(err){
+        res.status(500).json({err:"server error"})
+    }
+}
+
 // delete a product code
 module.exports.deleteProduct=async(req,res)=>{
 try{
