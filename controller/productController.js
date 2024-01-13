@@ -95,7 +95,7 @@ module.exports.searchProduct = async (req, res) => {
       }
       if (desc) {
         queryConditions.push({
-          desc: { $regex: description, $options: "i" },
+          desc: { $regex: desc, $options: "i" },
         });
       }
       if (variantName) {

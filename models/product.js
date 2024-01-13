@@ -1,4 +1,11 @@
 const mongoose = require('mongoose');
+
+const variantSchema = new mongoose.Schema({
+  name: String,
+  sku: String,
+  additionalCost: Number,
+  stockCount: Number
+});
 const productSchema = new mongoose.Schema({
     name: {
         type: String, 
@@ -15,12 +22,7 @@ const productSchema = new mongoose.Schema({
     variants: [variantSchema]
 });
 
-const variantSchema = new mongoose.Schema({
-  name: String,
-  sku: String,
-  additionalCost: Number,
-  stockCount: Number
-});
+
 
 
 const Product = mongoose.model('Product', productSchema);
