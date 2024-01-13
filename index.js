@@ -9,6 +9,8 @@ require("./config/dbConnection.js");
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
+app.use("/",require("./routes/index.js"))
+
 app.listen(process.env.PORT || 8000,(err)=>{
     if(err){
         console.log("Server is not running",err)
