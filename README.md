@@ -1,7 +1,8 @@
 ## e-commerce-system
 
 
-**Published Postman documentation of URL Shortener**
+**Published Postman documentation of e-commerce-system**
+https://documenter.getpostman.com/view/25896599/2s9YsNdVwT
 
 
 
@@ -22,7 +23,7 @@
 1. Make sure you have Node.js, Express, and MongoDB installed on your system.
 2. Clone the repository: git clone https://github.com/Indrajeet790/e-commerce-system
 3. Install the dependencies: npm install
-4. Start the server: npm start
+4. Start the server: node index.js
 5. The API will be available at http://localhost:8000.
 
 
@@ -33,5 +34,8 @@
 - GET `/product/get` - fetched all product 
 - PUT `/product/update/:prodctId` - update a product and variant 
 - Delete `/product/delete/:productId` - delete a product 
-- GET `/product/search` - search product by name,desc,variant name 
+- GET `/product/search` - search product by name,desc, variant name
+
+
+  
  
