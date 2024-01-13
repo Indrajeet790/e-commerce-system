@@ -59,7 +59,7 @@ module.exports.updateProduct = async (req, res) => {
       res.status(500).json({ status: "failed", error: error.message });
     }
   };
-  
+
   //Delete Product
 module.exports.deleteProduct = async (req, res) => {
     const { productId } = req.params;
@@ -73,6 +73,38 @@ module.exports.deleteProduct = async (req, res) => {
       res
         .status(200)
         .json({ status: "success", message: "Product deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ status: "failed", error: error.message });
+    }
+  };
+
+  // Search Products
+module.exports.searchProduct = async (req, res) => {
+    try {
+      const { name, desc, variantName } = req.query;
+      let products;
+      if (!name && !desc && ! variantName) {
+        return res
+          .status(400)
+          .json({ status: "failed", message: "Enter the searching string" });
+      }
+  
+      const queryConditions = [];
+      if (name) {
+        queryConditions.push({ name: { $regex: name, $options: "i" } });
+      }
+      if (desc) {
+        queryConditions.push({
+          desc: { $regex: description, $options: "i" },
+        });
+      }
+      if (variantName) {
+        queryConditions.push({
+          "variants.name": { $regex: variantName, $options: "i" },
+        });
+      }
+      products = await Product.find({ $or: queryConditions });
+      res.status(200).json({ status: "success", products });
     } catch (error) {
       res.status(500).json({ status: "failed", error: error.message });
     }
