@@ -60,3 +60,22 @@ module.exports.updateProduct = async (req, res) => {
     }
   };
   
+  //Delete Product
+module.exports.deleteProduct = async (req, res) => {
+    const { productId } = req.params;
+    try {
+      const deleteProduct = await Product.findByIdAndDelete(productId);
+      if (!deleteProduct) {
+        return res
+          .status(404)
+          .json({ status: "failed", error: "Product not found" });
+      }
+      res
+        .status(200)
+        .json({ status: "success", message: "Product deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ status: "failed", error: error.message });
+    }
+  };
+  
+  
